@@ -1,11 +1,232 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Tittel</title>
-</head>
-<body>
-<div> Hei </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>🍭 Musikkbingo! 🍭</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+<body cz-shortcut-listen="true">
+  <pre>B: Disney
+    Under the sea - Samuel E. Wright
+    You’ve Got a Friend in Me - Randy Newman
+    I Won’t Say (I’m In Love) - Susan Egan, Cheryl Freeman, La Chanze, Vaneese Thomas, 
+    I Wan’na Be Like You - Louis Prima, Phil Harris 
+    You’re Welcome - Dwayne Johnson
+    A Married Life - The City of Prague Philharmonic Orchestra
+    A Whole New World - Lea Salonga, Brad Kane
+    Strangers Like Me - Phil Collins
+    Colors of the Wind - Judy Kuhn
+    I Just Can’t Wait to King - Jason Weaver, Rowan Atkinson, Laura William
+    In Summer - Josh Gad
+    When We’re Human - Michael-Leon Wooley, Bruno Campos, Anika Noni Rose
+    When Will My Life Begin - Mandy Moore
+    If I didn’t have you - Billy Crystal, John Goodman
+    Reflection - Lea Salonga
+    
+    I: Norsk musikk
+    Lion King - Musti
+    Rosa Sky - Cezinando
+    Piano - Karpe
+    Sommerflort - Philip, Sandra Lyng
+    Alt jeg trenger - Oslo Ess
+    Hun Er Forelska i Laerer'n - The Kids
+    Typen din - Vidar Villa
+    Dra tilbake - Erik og Kriss
+    Tir n’a Noir - Vamp, Rita Eriksen
+    Elektrisk - Marcus og Martinus
+    Riv i hjertet -Sondre Justad
+    Her kommer vinteren - Jokke og valentinerne
+    Kainn ae lov - Too Far Gone
+    No 4 - Fokk lunsj
+    Smak av honning - deLillos
+    
+    
+    N: Film og TV
+    Main Title Theme Westworld - Ramin Djawadi
+    I'm Forrest… Forrest Gump - Alan Silvestri
+    Hedwig’s Theme - John Williams
+    The Avengers - Alan Silvestri
+    Star Wars Main Title and the Arrival at Naboo - John Williams, London Symphony Orchestra
+    Everywhere You Look - The Hit Crew
+    Theme from Beverly Hills, 90210 - John Davis
+    Seinfeld (theme) - Mount Royal Orchestra
+    Teardrop - Massive Attack
+    You Want It Darker - Leonard Cohen
+    Superman - Lazlo Bane
+    Ghostbusters - Ray Parker Jr.
+    James Bond Theme - James Bond Film Theme Orchestra
+    Game of Thrones Theme - Game of Thrones Orchestra
+    Stranger Things - Kyle Dixon & Michael Stein
+    
+    
+    G: Late 90s, Early 00’s
+    Stronger - Britney Spears
+    Genie in a Bottle - Christina Aguilera
+    Torn - Natalia Imbruglia
+    Wonderwall - Oasis
+    Man! I Feel Like a Woman - Shania Twain
+    Waterfalls - TLC
+    Boom, Boom, Boom, Boom! - Vengaboys
+    Reach - S Club 7
+    Whole again - Atomic Kitten
+    About You Now - Sugababes
+    The Call - Backstreet boys
+    It's Gonna Be Me - *Nsync
+    World of Our Own - Westlife
+    No Matter What - Boyzone
+    All Rise - Blue
+    
+    
+    O: Sommer
+    Summer Of’69 - Bryan Adams
+    Sommartider - Gyllene Tider
+    Neste sommer - deLillos
+    Sommer pa Jorda - Postgirobygget
+    In the Summertime - Mungo Jerry
+    The Boys of Summer - Don Henley
+    Summer - Calvin Harris
+    (Sittin’ on the) Dock of the Bay - Otis Redding
+    Good Vibrations - Beach boys
+    Here Comes the Sun - Beatles
+    California Gurls -Katy Perry
+    Summer Nights - John Travolta, Olivia Newton-John
+    Miami - Will Smith
+    All Summer Long - Kid Rock
+    Summer Love - Justin Timberlake    
+  </pre>
+  <div id="mount"></div>
+  <div id="btns">
+    <button name="send">Last ned brett</button>
+    <button name="reload">Nytt spill</button>
+  </div>
+  <style>
+    body { font: 1rem/1.2 sans-serif; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; touch-action: manipulation }
+    output { display: block; height: 3rem; line-height: 3rem }
+    button { cursor: pointer; border: 0; padding: 5px 9px; font: inherit; font-size: .8rem; border-radius: 3px; background: #252627; color: #fff; transition: .2s }
+    button:active { transform: scale(.9) }
+    th { text-align: inherit; font-size: large; color: magenta }
+    td b { pointer-events: none }
+    td { position: relative; cursor: pointer;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: top }
+    td::before { content: ''; position: absolute; pointer-events: none; top: 0; left: 0; width: 2em; height: 2em; border-radius: 100%; background: rgba(234, 0, 255, 0.5); transform: scale(.5); opacity: 0; transition: .2s }
+    td[aria-pressed="true"]::before { opacity: 1; transform: none }
+    td[data-last]::before { background: rgba(51, 255, 0, 0.5) }
+    pre { display: none }
+
+    #btns { position: absolute; right: 0; bottom: 0; margin: 5px }
+    #songs { position: absolute; top: 0; left: 0; width: calc(100% - 15rem); height: 100%; table-layout: fixed; font-size: 13px }
+    #board { position: absolute; top: 1rem; right: 1rem; text-align: center }
+    #board td { width: 2em; line-height: 2em; text-align: center; background: #eee; border-radius: 3px }
+    #board tr:nth-child(5n + 1) td { border-bottom: 25px solid #fff }
+  </style>
+  <script>
+    var mount = document.getElementById('mount') 
+    var songs = Object.assign(mount.appendChild(document.createElement('table')), { id: 'songs' });
+    var html = store();
+    var sheet = [];
+    
+    if (html) mount.innerHTML = html;
+    else {
+      document.querySelector('pre').textContent.trim().split(/\s*\n\s*/).forEach(function (item, index) {
+        var row = songs.rows[index % 16] || songs.insertRow();
+        var num = index - Math.floor(index / 16);
+  
+        if (!row.rowIndex) row.appendChild(document.createElement('th')).textContent = item;
+        else {
+          var cell = document.createElement('td')
+          cell.setAttribute('data-number', num);
+          cell.innerHTML = num + ': <b>' + item.replace(/\s*-\s*/, '</b><br>')
+          row.appendChild(cell)
+        }
+      });
+  
+      var board = Object.assign(mount.appendChild(songs.cloneNode(true)), { id: 'board' });
+  
+      [].forEach.call(board.rows[0].cells, function (cell, cellIndex) {
+        var rows = [].map.call(board.rows, function (row) { return row.rowIndex });
+        var shuffle = rows.slice(1).sort(function() { return .5 - Math.random() });
+  
+        rows.forEach(function (rowIndex) {
+          var row = rowIndex ? songs.rows[shuffle.pop()] : board.rows[rowIndex];
+          var cell = board.rows[rowIndex].cells[cellIndex];
+          var number = row.cells[cellIndex].textContent.split(':')[0];
+          cell.textContent = number;
+          cell.setAttribute('data-number', number);
+        });
+      });
+      store(mount.innerHTML);
+    }
+
+    function store (val) {
+      var key = 'MQB';
+      try {
+        if (val === false) window.localStorage.removeItem(key);
+        else if (val) window.localStorage.setItem(key, val);
+        else return window.localStorage.getItem(key);
+      } catch (err) { }
+    }
+
+    document.addEventListener('click', function (event) {
+      if (event.target.nodeName === 'TD') {
+        var number = event.target.getAttribute('data-number');
+        var cells = document.querySelectorAll('[data-number="'+number+'"]');
+        cells[0].setAttribute('aria-pressed', cells[0].getAttribute('aria-pressed') !== 'true');
+        cells[1].setAttribute('aria-pressed', cells[1].getAttribute('aria-pressed') !== 'true'); 
+        store(mount.innerHTML);
+      }
+      if (event.target.name === 'send') {
+        var frame = document.getElementById('board');
+        var link = document.createElement('a');
+        event.preventDefault();
+
+        window.html2canvas(frame).then(function(canvas) {
+          link.download = 'bingobrett.png';
+          link.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+          document.body.appendChild(link).click();
+          document.body.removeChild(link);
+        });
+        
+        event.target.textContent = 'Brett lagret! Send til bingosjefen!';
+        setTimeout(() => {
+          event.target.textContent = 'Last ned brett';
+        }, 3000);
+      }
+      if (event.target.name === 'reload') {
+        if (event.target.hasAttribute('data-sikker')) {
+          store(false);
+          window.location.reload();
+        } else {
+          event.target.setAttribute('data-sikker', 'true');
+          event.target.textContent = 'Sikker?';
+        }
+      }
+    });
+
+    document.addEventListener('paste', function () {
+      var paste = (event.clipboardData || window.clipboardData).getData('text');
+      var nodes = Object.assign(document.createElement('div'), { innerHTML: window.atob(paste.slice(22) || '') });
+      var songs = [].slice.call(document.querySelectorAll('#songs [aria-pressed="true"]'));
+      var check = [].every.call(nodes.querySelectorAll('[aria-pressed="true"]'), function (el) {
+        return songs.some(function(song) {
+          return song.textContent.split(':')[0].trim() === el.textContent.trim();
+        });
+      });
+      alert(check);
+    });
+    document.addEventListener('keydown', function () {
+      if (event.keyCode === 32 && event.shiftKey) {
+        var left = [].slice.call(document.querySelectorAll('#songs td:not([aria-pressed="true"])'));
+        var prev = document.querySelector('#songs td[data-last]') || document.querySelector('#songs td');
+        var next = left[Math.floor(Math.random() * left.length)];
+
+        prev.removeAttribute('data-last');
+        next.setAttribute('data-last', 'true');
+        next.setAttribute('aria-pressed', 'true');
+        next.style.pointerEvents = 'none'; // disable unclick
+        store(mount.innerHTML);
+      }
+    });
+  </script>
 </body>
 </html>
