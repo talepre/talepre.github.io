@@ -114,14 +114,15 @@
     td[data-last]::before { background: rgba(51, 255, 0, 0.5) }
     pre { display: none }
 
-    #btns { position: absolute; right: 0; bottom: 0; margin: 5px }
-    #songs { position: absolute; top: 0; left: 0; width: calc(100% - 15rem); height: 100%; table-layout: fixed; font-size: 13px }
-    #board { position: absolute; top: 1rem; right: 1rem; text-align: center }
+    #btns { margin: 5px }
+    #songs { width: 100%; height: 100%; table-layout: fixed; font-size: 13px }
+    #board { text-align: center }
     #board td { width: 2em; line-height: 2em; text-align: center; background: #eee; border-radius: 3px }
     #board tr:nth-child(5n + 1) td { border-bottom: 25px solid #fff }
   </style>
   <script>
     var mount = document.getElementById('mount') 
+    var boards = Object.assign(mount.appendChild(document.createElement('div')));
     var songs = Object.assign(mount.appendChild(document.createElement('table')), { id: 'songs' });
     var html = store();
     var sheet = [];
@@ -141,7 +142,7 @@
         }
       });
   
-      var board = Object.assign(mount.appendChild(songs.cloneNode(true)), { id: 'board' });
+      var board = Object.assign(boards.appendChild(songs.cloneNode(true)), { id: 'board' });
   
       [].forEach.call(board.rows[0].cells, function (cell, cellIndex) {
         var rows = [].map.call(board.rows, function (row) { return row.rowIndex });
