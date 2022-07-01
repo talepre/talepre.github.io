@@ -1,233 +1,393 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>🍭 Musikkbingo! 🍭</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Musikkbingo! 🎶 💖</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
   </head>
-<body cz-shortcut-listen="true">
-  <pre>B: Disney
-    Under the sea - Samuel E. Wright
-    You’ve Got a Friend in Me - Randy Newman
-    I Won’t Say (I’m In Love) - Susan Egan, Cheryl Freeman, La Chanze, Vaneese Thomas, 
-    I Wan’na Be Like You (The Monkey Song) - Louis Prima, Phil Harris 
-    You’re Welcome - Dwayne Johnson
-    A Married Life - The City of Prague Philharmonic Orchestra
-    A Whole New World - Lea Salonga, Brad Kane
-    Strangers Like Me - Phil Collins
-    Colors of the Wind - Judy Kuhn
-    I Just Can’t Wait to King - Jason Weaver, Rowan Atkinson, Laura William
-    In Summer - Josh Gad
-    When We’re Human - Michael-Leon Wooley, Bruno Campos, Anika Noni Rose
-    When Will My Life Begin - Mandy Moore
-    If I didn’t have you - Billy Crystal, John Goodman
-    Reflection - Lea Salonga
+  <body>
+    <pre>
+    B: Royals
+    Kings & Queens - Ava Max
+    King - Years & Years
+    Royals - Lorde
+    Don't Stop Me Now - Queen
+    Crazy Little Thing Called Love - Queen
+    Kongen av Mallorca - Svein Østvik
+    Dronningen - Staysman, Leif & Kompisene
+    Beautiful Girls - Sean Kingston
+    Sex On Fire - Kings of Leon
+    Dancing Queen - Abba
+    Trap Queen - Fetty Wap
+    Purple Rain - Prince
+    Kiss - Prince
+    Leve som ein prins - Hellbillies
+    Kongen på havet - Kaptein Sabeltann
     
-    I: Norsk musikk
-    Lion King - Musti
-    Rosa Sky - Cezinando
-    Piano - Karpe
-    Sommerflørt - Philip, Sandra Lyng
-    Alt jeg trenger - Oslo Ess
-    Hun Er Forelska i Lærer'n - The Kids
-    Typen din - Vidar Villa
-    Dra tilbake - Erik og Kriss
-    Tir n’a Noir - Vamp, Rita Eriksen
-    Elektrisk - Marcus og Martinus, Katastrofe
-    Riv i hjertet -Sondre Justad
-    Her kommer vinteren - Jokke og valentinerne
-    Kainn æ lov - Too Far Gone
-    Føkk lunsj - No4
-    Smak av honning - deLillos
-    
-    
-    N: Film og TV
-    Main Title Theme Westworld - Ramin Djawadi
-    I'm Forrest… Forrest Gump - Alan Silvestri
-    Hedwig’s Theme - John Williams
-    The Avengers - Alan Silvestri
-    Star Wars Main Title and the Arrival at Naboo - John Williams, London Symphony Orchestra
-    Everywhere You Look - The Superstation
-    Theme from Beverly Hills, 90210 - John Davis
-    Seinfeld (theme) - Mount Royal Orchestra
-    Teardrop - Massive Attack
-    You Want It Darker - Leonard Cohen
-    Superman - Lazlo Bane
-    Ghostbusters - Ray Parker Jr.
-    James Bond Theme - John Barry, Monty Norman
-    Game of Thrones Theme - Game of Thrones Orchestra
-    Stranger Things - Kyle Dixon & Michael Stein
-    
-    
-    G: Late 90s, Early 00’s
-    Stronger - Britney Spears
-    Genie in a Bottle - Christina Aguilera
-    Torn - Natalia Imbruglia
-    Wonderwall - Oasis
-    Man! I Feel Like a Woman - Shania Twain
-    Waterfalls - TLC
-    Boom, Boom, Boom, Boom! - Vengaboys
-    Reach - S Club 7
-    Whole again - Atomic Kitten
-    About You Now - Sugababes
-    The Call - Backstreet boys
-    It's Gonna Be Me - *Nsync
-    World of Our Own - Westlife
-    No Matter What - Boyzone
-    All Rise - Blue
-    
-    
-    O: Sommer
+    I: Sommer
     Summer Of’69 - Bryan Adams
     Sommartider - Gyllene Tider
     Neste sommer - deLillos
-    Sommer på Jorda - Postgirobygget
+    Sommer pa Jorda - Postgirobygget
     In the Summertime - Mungo Jerry
     The Boys of Summer - Don Henley
     Summer - Calvin Harris
-    (Sittin’ On) the Dock of the Bay - Otis Redding
-    Good Vibrations - Beach boys
-    Here Comes the Sun - Beatles
-    California Gurls -Katy Perry
     Summer Nights - John Travolta, Olivia Newton-John
-    Miami - Will Smith
     All Summer Long - Kid Rock
-    Summer Love - Justin Timberlake    
-  </pre>
-  <div id="mount"></div>
-  <div id="btns">
-    <button name="send">Last ned brett</button>
-    <button name="reload">Nytt spill</button>
-  </div>
-  <style>
-    body { font: 1rem/1.2 sans-serif; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; touch-action: manipulation }
-    output { display: block; height: 3rem; line-height: 3rem }
-    button { cursor: pointer; border: 0; padding: 5px 9px; font: inherit; font-size: .8rem; border-radius: 3px; background: #252627; color: #fff; transition: .2s }
-    button:active { transform: scale(.9) }
-    th { text-align: inherit; font-size: large; color: magenta }
-    td b { pointer-events: none }
-    td { position: relative; cursor: pointer;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: top }
-    td::before { content: ''; position: absolute; pointer-events: none; top: 0; left: 0; width: 2em; height: 2em; border-radius: 100%; background: rgba(234, 0, 255, 0.5); transform: scale(.5); opacity: 0; transition: .2s }
-    td[aria-pressed="true"]::before { opacity: 1; transform: none }
-    td[data-last]::before { background: rgba(51, 255, 0, 0.5) }
-    pre { display: none }
-
-    #btns { margin: 5px }
-    #songs { width: 100%; height: 100%; table-layout: fixed; font-size: 13px }
-    #board { text-align: center }
-    #board td { width: 2em; line-height: 2em; text-align: center; background: #eee; border-radius: 3px }
-    #board tr:nth-child(5n + 1) td { border-bottom: 25px solid #fff }
-  </style>
-  <script>
-    var mount = document.getElementById('mount') 
-    var boards = Object.assign(mount.appendChild(document.createElement('div')));
-    var songs = Object.assign(mount.appendChild(document.createElement('table')), { id: 'songs' });
-    var html = store();
-    var sheet = [];
+    Summer Love - Justin Timberlake 
+    Sommer og Skolefri - Malin
+    Sommerkroppen - Mads Hansen
+    God sommer - Freddy Kalas
+    Neste Sommer - TIX
+    Denne Sommer'n - Cir.Cuz
     
-    if (html) mount.innerHTML = html;
-    else {
-      document.querySelector('pre').textContent.trim().split(/\s*\n\s*/).forEach(function (item, index) {
-        var row = songs.rows[index % 16] || songs.insertRow();
-        var num = index - Math.floor(index / 16);
-  
-        if (!row.rowIndex) row.appendChild(document.createElement('th')).textContent = item;
-        else {
-          var cell = document.createElement('td')
-          cell.setAttribute('data-number', num);
-          cell.innerHTML = num + ': <b>' + item.replace(/\s*-\s*/, '</b><br>')
-          row.appendChild(cell)
-        }
+    N: Eurodance
+    Around the World (La La La La La) - A Touch Of Class, Pete Könemann
+    Be My Lover - La Bouche
+    Sandstorm - Darude
+    Blue (Da Ba Dee) - Eiffel 65
+    Heaven - DJ Sammy
+    L'amour Toujours - Gigi D'Agostino
+    The Rhythm of the Night - Corona
+    Boom, Boom, Boom, Boom! - Vengaboys
+    Daddy DJ - Daddy DJ
+    Ecuador - Sash!
+    The Logical Song - Scooter
+    5, 6, 7, 8 - Steps
+    Satisfaction - Benny Benassi
+    What Is Love - Haddaway
+    Barbie Girl - Aqua
+    
+    G: One hit wonders
+    Ooh Ahh.. Just A Little Bit - Gina G.
+    Bom Bom - Sam And The Womp
+    Mambo No. 5 - Lou Bega
+    Let Her Go - Passenger
+    Somebody That I Used To Know - Gotye
+    Who Let The Dogs Out - Baha Men
+    Teenage Dirtbag - Wheatus
+    Stacy's Mom - Fountains Of Wayne
+    Mickey - Toni Basil
+    Cotton Eye Joe - Rednex
+    Jump Around - House Of Pain
+    Rapper's Delight - The Sugarhill Gang
+    Paper Planes - M.I.A. 
+    Freestyler - Bomfunk MC's  
+    Tubthumping - Chumbawamba
+
+    O: TikTok
+    As It Was - Harry Styles
+    Heat Waves - Glass Animals
+    About Damn Time - Lizzo
+    Do It To It - ACRAZE, Cherish
+    STAY - The Kid LAROI, Justin Bieber
+    Sunroof - Nicky Youre, dazy
+    abcdefu - GAYLE
+    Bam Bam - Camilla Cabello, Ed Sheeran
+    Jiggle Jiggle - Duke&Jones, Louis Theroux
+    Lost - Frank Ocean
+    Boyfriend - Dove Cameron
+    Dandelions - Ruth B.
+    Wellerman (Sea Shanty) - Nathan Evans
+    Numb Little Bug - Em Beihold
+    Kiss Me More - Doja Cat, SZA
+   
+  </pre
+    >
+    <div id="mount"></div>
+    <div id="btns">
+      <button name="reload">Nytt spill</button>
+    </div>
+    <style>
+      body {
+        font: 1rem/1.2 sans-serif;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+      }
+      output {
+        display: block;
+        height: 3rem;
+        line-height: 3rem;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        padding: 5px 9px;
+        font: inherit;
+        font-size: 0.8rem;
+        border-radius: 3px;
+        background: #252627;
+        color: #fff;
+        transition: 0.2s;
+      }
+      button:active {
+        transform: scale(0.9);
+      }
+      th {
+        text-align: inherit;
+        font-size: 24px;
+        color: darkcyan;
+      }
+      td b {
+        pointer-events: none;
+      }
+      td {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: top;
+      }
+      td::before {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 3em;
+        height: 3em;
+        border-radius: 100%;
+        background: rgba(0, 139, 139, 0.5);
+        transform: scale(0.5);
+        opacity: 0;
+        transition: 0.2s;
+      }
+      td[aria-pressed="true"]::before {
+        opacity: 1;
+        transform: none;
+      }
+      td[data-last]::before {
+        background: rgba(51, 255, 0, 0.5);
+      }
+      pre {
+        display: none;
+      }
+
+      p {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top;
+      }
+      p::before {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 3em;
+        height: 3em;
+        border-radius: 100%;
+        background: rgba(0, 139, 139, 0.5);
+        transform: scale(0.5);
+        opacity: 0;
+        transition: 0.2s;
+      }
+      p[aria-pressed="true"]::before {
+        opacity: 1;
+        transform: none;
+      }
+      p[data-last]::before {
+        background: rgba(51, 255, 0, 0.5);
+      }
+
+      #btns {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 5px;
+      }
+      #songs {
+        font-size: 16px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 50%);
+      }
+
+      #songs > div {
+        padding: 5px;
+      }
+
+      #board {
+        text-align: center;
+      }
+      #board td {
+        width: 3em;
+        line-height: 3em;
+        text-align: center;
+        background: #eee;
+        border-radius: 3px;
+      }
+      #board tr:nth-child(5n) td {
+        border-bottom: 25px solid #fff;
+      }
+    </style>
+    <script>
+      var mount = document.getElementById("mount");
+      var p = Object.assign(mount.appendChild(document.createElement("p")), {
+        id: "par",
       });
-  
-      var board = Object.assign(boards.appendChild(songs.cloneNode(true)), { id: 'board' });
-  
-      [].forEach.call(board.rows[0].cells, function (cell, cellIndex) {
-        var rows = [].map.call(board.rows, function (row) { return row.rowIndex });
-        var shuffle = rows.slice(1).sort(function() { return .5 - Math.random() });
-  
-        rows.forEach(function (rowIndex) {
-          var row = rowIndex ? songs.rows[shuffle.pop()] : board.rows[rowIndex];
-          var cell = board.rows[rowIndex].cells[cellIndex];
-          var number = row.cells[cellIndex].textContent.split(':')[0];
-          cell.textContent = number;
-          cell.setAttribute('data-number', number);
+      var board = Object.assign(
+        mount.appendChild(document.createElement("table")),
+        { id: "board" }
+      );
+      var songs = Object.assign(
+        mount.appendChild(document.createElement("div")),
+        { id: "songs" }
+      );
+      var html = store();
+      var sheet = [];
+
+      if (html) mount.innerHTML = html;
+      else {
+        // SONGS
+        document
+          .querySelector("pre")
+          .textContent.trim()
+          .split(/\s*\n\s*/)
+          .forEach(function (item, index) {
+            var songNum = index - Math.floor(index / 16);
+            var songCategory =
+              songs.children[Math.floor(index / 16)] ||
+              songs.appendChild(document.createElement("div"));
+
+            if (index % 16 === 0) {
+              songCategory.appendChild(
+                document.createElement("h2")
+              ).textContent = item;
+            } else {
+              var song = document.createElement("p");
+              song.setAttribute("data-number", songNum);
+              song.innerHTML =
+                songNum + ": <b>" + item.replace(/\s*-\s*/, "</b><br>");
+              songCategory.appendChild(song);
+            }
+          });
+
+        // BOARD
+        var thead = board.appendChild(document.createElement("thead"));
+
+        thead.appendChild(document.createElement("th")).textContent = "B";
+        thead.appendChild(document.createElement("th")).textContent = "I";
+        thead.appendChild(document.createElement("th")).textContent = "N";
+        thead.appendChild(document.createElement("th")).textContent = "G";
+        thead.appendChild(document.createElement("th")).textContent = "O";
+
+        var tbody = board.appendChild(document.createElement("tbody"));
+        var b = [...Array(15).keys()]
+          .map((i) => i + 1)
+          .sort(() => Math.random() - 0.5);
+        var i = [...Array(15).keys()]
+          .map((i) => i + 16)
+          .sort(() => Math.random() - 0.5);
+        var n = [...Array(15).keys()]
+          .map((i) => i + 31)
+          .sort(() => Math.random() - 0.5);
+        var g = [...Array(15).keys()]
+          .map((i) => i + 46)
+          .sort(() => Math.random() - 0.5);
+        var o = [...Array(15).keys()]
+          .map((i) => i + 61)
+          .sort(() => Math.random() - 0.5);
+        b.forEach((val) => {
+          var row = tbody.appendChild(document.createElement("tr"));
+          var bcell = document.createElement("td");
+          bcell.setAttribute("data-number", val);
+          bcell.innerHTML = val;
+          row.appendChild(bcell);
+
+          var icell = document.createElement("td");
+          var ival = i.pop();
+          icell.setAttribute("data-number", ival);
+          icell.innerHTML = ival;
+          row.appendChild(icell);
+
+          var ncell = document.createElement("td");
+          var nval = n.pop();
+          ncell.setAttribute("data-number", nval);
+          ncell.innerHTML = nval;
+          row.appendChild(ncell);
+
+          var gcell = document.createElement("td");
+          var gval = g.pop();
+          gcell.setAttribute("data-number", gval);
+          gcell.innerHTML = gval;
+          row.appendChild(gcell);
+
+          var ocell = document.createElement("td");
+          var oval = o.pop();
+          ocell.setAttribute("data-number", oval);
+          ocell.innerHTML = oval;
+          row.appendChild(ocell);
         });
-      });
-      store(mount.innerHTML);
-    }
 
-    function store (val) {
-      var key = 'MQB';
-      try {
-        if (val === false) window.localStorage.removeItem(key);
-        else if (val) window.localStorage.setItem(key, val);
-        else return window.localStorage.getItem(key);
-      } catch (err) { }
-    }
-
-    document.addEventListener('click', function (event) {
-      if (event.target.nodeName === 'TD') {
-        var number = event.target.getAttribute('data-number');
-        var cells = document.querySelectorAll('[data-number="'+number+'"]');
-        cells[0].setAttribute('aria-pressed', cells[0].getAttribute('aria-pressed') !== 'true');
-        cells[1].setAttribute('aria-pressed', cells[1].getAttribute('aria-pressed') !== 'true'); 
         store(mount.innerHTML);
       }
-      if (event.target.name === 'send') {
-        var frame = document.getElementById('board');
-        var link = document.createElement('a');
-        event.preventDefault();
 
-        window.html2canvas(frame).then(function(canvas) {
-          link.download = 'bingobrett.png';
-          link.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-          document.body.appendChild(link).click();
-          document.body.removeChild(link);
-        });
-        
-        event.target.textContent = 'Brett lagret! Send til bingosjefen!';
-        setTimeout(() => {
-          event.target.textContent = 'Last ned brett';
-        }, 3000);
+      function store(val) {
+        var key = "MQB";
+        try {
+          if (val === false) window.localStorage.removeItem(key);
+          else if (val) window.localStorage.setItem(key, val);
+          else return window.localStorage.getItem(key);
+        } catch (err) {}
       }
-      if (event.target.name === 'reload') {
-        if (event.target.hasAttribute('data-sikker')) {
-          store(false);
-          window.location.reload();
-        } else {
-          event.target.setAttribute('data-sikker', 'true');
-          event.target.textContent = 'Sikker?';
+
+      document.addEventListener("click", function (event) {
+        if (event.target.nodeName === "TD" || event.target.nodeName === "P") {
+          var number = event.target.getAttribute("data-number");
+          var cells = document.querySelectorAll(
+            '[data-number="' + number + '"]'
+          );
+          cells[0].setAttribute(
+            "aria-pressed",
+            cells[0].getAttribute("aria-pressed") !== "true"
+          );
+          cells[1].setAttribute(
+            "aria-pressed",
+            cells[1].getAttribute("aria-pressed") !== "true"
+          );
+          store(mount.innerHTML);
         }
-      }
-    });
 
-    document.addEventListener('paste', function () {
-      var paste = (event.clipboardData || window.clipboardData).getData('text');
-      var nodes = Object.assign(document.createElement('div'), { innerHTML: window.atob(paste.slice(22) || '') });
-      var songs = [].slice.call(document.querySelectorAll('#songs [aria-pressed="true"]'));
-      var check = [].every.call(nodes.querySelectorAll('[aria-pressed="true"]'), function (el) {
-        return songs.some(function(song) {
-          return song.textContent.split(':')[0].trim() === el.textContent.trim();
-        });
+        if (event.target.nodeName === "H2") {
+        }
+
+        if (event.target.name === "reload") {
+          if (event.target.hasAttribute("data-sikker")) {
+            store(false);
+            window.location.reload();
+          } else {
+            event.target.setAttribute("data-sikker", "true");
+            event.target.textContent = "Sikker?";
+          }
+        }
       });
-      alert(check);
-    });
-    document.addEventListener('keydown', function () {
-      if (event.keyCode === 32 && event.shiftKey) {
-        var left = [].slice.call(document.querySelectorAll('#songs td:not([aria-pressed="true"])'));
-        var prev = document.querySelector('#songs td[data-last]') || document.querySelector('#songs td');
-        var next = left[Math.floor(Math.random() * left.length)];
 
-        prev.removeAttribute('data-last');
-        next.setAttribute('data-last', 'true');
-        next.setAttribute('aria-pressed', 'true');
-        next.style.pointerEvents = 'none'; // disable unclick
-        store(mount.innerHTML);
-      }
-    });
-  </script>
-</body>
+      document.addEventListener("keydown", function () {
+        if (event.keyCode === 32 && event.shiftKey) {
+          var left = [].slice.call(
+            document.querySelectorAll('#songs td:not([aria-pressed="true"])')
+          );
+          var prev =
+            document.querySelector("#songs td[data-last]") ||
+            document.querySelector("#songs td");
+          var next = left[Math.floor(Math.random() * left.length)];
+
+          prev.removeAttribute("data-last");
+          next.setAttribute("data-last", "true");
+          next.setAttribute("aria-pressed", "true");
+          next.style.pointerEvents = "none"; // disable unclick
+          store(mount.innerHTML);
+        }
+      });
+    </script>
+  </body>
 </html>
